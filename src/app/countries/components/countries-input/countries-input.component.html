@@ -1,0 +1,13 @@
+<form (ngSubmit)="searchByName()">
+  <label for="countryName" class="form-label">Country Name</label>
+  <input
+    type="text"
+    class="form-control"
+    id="countryName"
+    [placeholder]="placeholderValue"
+    autocomplete="off"
+    name="searchTerm"
+    (input)="keyPressed()"
+    [(ngModel)]="searchTerm"
+  />
+</form>

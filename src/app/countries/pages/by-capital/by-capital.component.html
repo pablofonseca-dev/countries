@@ -1,0 +1,26 @@
+<h2>Search By Capital</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <div class="mb-3">
+      <app-countries-input
+        (onSearchTermData)="this.searchByName($event)"
+        (onDebounce)="this.suggestions($event)"
+        placeholderValue="Search by Capital..."
+      ></app-countries-input>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div *ngIf="isError" class="alert alert-danger">
+  No countries found with the term {{ searchTerm }}.
+</div>
+
+<div class="row" *ngIf="!isError">
+  <div class="col">
+    <app-countries-table [countriesData]="this.countries"></app-countries-table>
+  </div>
+</div>

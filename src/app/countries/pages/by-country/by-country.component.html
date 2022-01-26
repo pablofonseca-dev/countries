@@ -1,0 +1,39 @@
+<h2>Search By Name</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <app-countries-input
+      (onSearchTermData)="this.searchByName($event)"
+      (onDebounce)="this.suggestions($event)"
+      placeholderValue="Search by Name..."
+    ></app-countries-input>
+  </div>
+</div>
+<ul class="list-group" *ngIf="searchTerm.length > 0">
+  <li
+    class="list-group-item list-group-item-action"
+    *ngFor="let suggested of suggestedCountries"
+  >
+    <a class="nav-link" [routerLink]="['/country', suggested.alpha2Code]">{{
+      suggested.name
+    }}</a>
+  </li>
+  <li
+    class="list-group-item list-group-item-action"
+    (click)="searchByName(searchTerm)"
+  >
+    <a class="nav-link">Buscar: "{{ searchTerm }}"</a>
+  </li>
+</ul>
+<hr />
+
+<div *ngIf="isError" class="alert alert-danger">
+  No countries found with the term {{ searchTerm }}.
+</div>
+
+<div class="row" *ngIf="!isError">
+  <div class="col">
+    <app-countries-table [countriesData]="this.countries"></app-countries-table>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<h3>
+  Search by Region: <small>{{ activeRegion.name | titlecase }}</small>
+</h3>
+<hr />
+
+<h5>Select the Region</h5>
+<div class="row m-4">
+  <div class="col">
+    <select
+      class="form-select"
+      aria-label="Region name selection"
+      [ngModel]="activeRegion"
+      (ngModelChange)="loadActiveRegion($event)"
+    >
+      <option [ngValue]="region" *ngFor="let region of regions">
+        {{ region.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <app-countries-table [countriesData]="this.countries"></app-countries-table>
+  </div>
+</div>
